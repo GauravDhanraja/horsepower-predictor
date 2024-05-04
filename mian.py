@@ -4,7 +4,7 @@ import pickle
 from sklearn.linear_model import LinearRegression
 
 def train_and_save_model():
-    data = pd.read_csv("mtdata.csv")
+    data = pd.read_csv("data.csv")
 
     X = data[['cly', 'disp']].values
     Y = data['hp'].values
