@@ -2,10 +2,17 @@ library(ggplot2)
 
 data(mtcars)
 
+disp = mtcars$disp
+cly = mtcars$cyl
+hp = mtcars$hp
+
+mtdata = data.frame(cly, disp, hp)
+
+write.csv(mtdata, "mtdata.csv", row.names = FALSE)
+
 
 hp_dataframe <- data.frame(cly = mtcars$cyl, disp = mtcars$disp, hp = mtcars$hp)
 mpg_dataframe <- data.frame(cly = mtcars$cyl, disp = mtcars$disp, mpg = mtcars$mpg)
-
 
 hp_map <- ggplot(hp_dataframe, aes(x = disp, y = cly, fill = hp)) +
             geom_tile() +
@@ -19,6 +26,6 @@ mpg_map <- ggplot(mpg_dataframe, aes(x = disp, y = cly, fill = mpg)) +
             ggtitle("Heatmap of MPG Distribution by Engine Displacement and Number of Cylinders") +
             scale_fill_continuous(name = "MPG", low = "blue", high = "red") 
 
-
 ggsave("./plots/hp_heatmap.png", hp_map, width = 8, height = 5, units = "in", dpi = 500)
 ggsave("./plots/mpg_heatmap.png", mpg_map, width = 8, height = 5, units = "in", dpi = 500)
+
